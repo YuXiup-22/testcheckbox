@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .system{
+      /* height: 100vm; */
+    }
+    .header{
+      height: 200px;
+      background-color: blueviolet;
+    }
+    .left{
+      width: 100px;
+      height:100vw;
+      float: left;
+      background-color: red;
+    }
+    .BFC{
+      overflow: hidden;
+    }
+    .right{
+
+      height:100vw;
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+    <div class="system">
+      <div class="header"></div>
+
+      <div class="left"></div>
+      <div class="BFC">
+        <div class="right"></div>
+      </div>
+    </div>
+    
+ 
+  <script src="./test14.js"> </script>
+</body>
+</html>

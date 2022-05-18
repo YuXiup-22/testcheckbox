@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .father{
+      /* height: 100px; */
+      background-color: black;
+      overflow: hidden;
+    }
+    .son{
+      height: 100px;
+      width: 50px;
+      float: right;
+      background-color: beige;
+    }
+    .clear{
+      clear: both;
+    }
+    .son2{
+      height: 50px;
+      width: 50px;
+      background-color: aqua;
+    }
+
+
+
+
+    .box{
+      height: 100px;
+      background-color: black;
+      /* position: relative; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+    .in{
+      /* position: absolute; */
+      height: 50px;
+      width: 50px;
+      background-color: aliceblue;
+      /* top: 50%;
+      left: 50%; */
+      /* transform: translate(-50%,-50%); */
+      /* top:0;
+      left: 0;
+      right: 0;
+      bottom: 0; */
+      /* margin: auto; */
+      /* margin-left:-25px ;
+      margin-top: -50px; */
+    }
+    .box2{
+      height: 100px;
+      background-color: aqua;
+    }
+    .in2{
+      height: 50px;
+      width: 50px;
+      top:50%;
+      left: 50%;
+      background-color: blueviolet;
+
+    }
+  </style>
+</head>
+<body>
+  <!-- <div class="father">
+    <div class="son"></div>
+    <div class="clear">
+    <div class="son2"></div>
+  </div> -->
+  <div class="box"> 
+    <div class="in"></div>
+  </div>
+  <div class="box2"> 
+    <div class="in2"></div>
+  </div>
+</body>
+</html>
