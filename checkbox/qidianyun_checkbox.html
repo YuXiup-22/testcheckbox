@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>奇点云</title>
+  <style>
+    #allSelectBox{
+      width: 120px;
+      /* background-color: aqua; */
+    }
+  </style>
+</head>
+<body>
+  <div id="allSelectBox"></div>
+  <script>
+    (function () {
+      // 获取父元素
+      let box = document.getElementById("allSelectBox")
+      // 添加子节点
+      for(let i = 0;i<18;i++){
+        let checkbox = document.createElement("INPUT")
+        checkbox.setAttribute("type", "checkbox")
+        box.appendChild(checkbox)
+      }
+      let boxlist = box.getElementsByTagName("INPUT")
+      // 鼠标点击
+      document.onmousedown = function(e){
+        console.log(e);
+        let startX,startY
+        startX = e.clientX
+        startY = e.clientY
+        console.log(startX);
+        console.log(startY);
+        // 添加标识符，表示点击时正在选择
+        let isSelect = true
+        // 创建框选框
+        let boder = document.createElement("div")
+        boder.className = "boder"
+        // 添加样式
+        boder.style = "position:absolute; display:none; width:0px; height:0px; border:1px dashed black; z-index:999;"
+        boder.top = startX +"px"
+        boder.style.left = startY +"px"
+        // 添加到文档中
+        document.body.appendChild(boder)
+
+        // 鼠标移动时，触发事件给边框显示出来
+        let endX,endY;
+        document.onmousemove = function (e) {
+          if(isSelect){
+            boder.style.display = ""
+            // console.log(e);
+            endX = e.clientX
+            endY = e.clientY
+            // 修改边框的宽高和他的位置
+            boder.style.left = Math.min(endX,startX)+"px"
+            boder.style.top = Math.min(endY,startY)+"px"
+            boder.style.width = Math.abs(startX-endX)+"px"
+            boder.style.height = Math.abs(startY-endY)+"px"
+            
+            // 在移动的过程中判断哪些checkbox需要被选中
+            for(let i = 0;i<boxlist.length;i++){
+            let maxX = Math.max(boxlist[i].offsetWidth + boxlist[i].offsetLeft,boder.offsetLeft+boder.offsetWidth)
+            let minX = Math.min(boxlist[i].offsetLeft,boder.offsetLeft)
+            let maxY = Math.max(boxlist[i].offsetHeight + boxlist[i].offsetTop,boder.offsetTop+boder.offsetHeight)
+            let minY = Math.min(boxlist[i].offsetTop,boder.offsetTop)
+
+            // 判断是否相交
+            if(maxX-minX<=boxlist[i].offsetWidth+boder.offsetWidth && maxY-minY<=boxlist[i].offsetHeight+boder.offsetHeight){
+              boxlist[i].checked = true
+            }else{
+              boxlist[i].checked = false
+            }
+          }
+          }
+        }
+        document.onmouseup = function () {
+          // 避免后续移动，干扰选择
+          isSelect = false
+          // 清除掉边框
+          document.body.removeChild(boder)
+        }
+        // 点击其他地方，选择清除
+        for(let item of boxlist){
+          item.checked = false
+        }
+      }
+  })()
+  </script>
+</body>
+</html>
